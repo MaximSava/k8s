@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-multi-pod
+  labels:
+    app: my-k8s-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLables:
+      project: multi-pod
+  template:
+    metadata:
+      labels:
+        project: multi-pod # Service will look for those Pods labels
+    spec:
+      containers:
+        - name: superset
+          image: amancevice/superset
+          ports:
+            - containerPort: 80
+              -
+        - name: airflow
+          image: puckel/docker-airflow
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: multi-pod-service
+  labels:
+    env: prod
+    owner: Maxim Sava
+spec:
+  selector:
+    project: multi-pod
+  ports:
+    - name: superset-listener
+      protocol: TCP
+      port: 80 # Port on Load Balancer
+      targetPort: 80 #Port on Pod
+
+    - name: airflow-listener
+      protocol: TCP
+      port: 81
+      targetPort: 8080
+
+  type: LoadBalancer

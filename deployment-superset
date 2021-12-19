@@ -1,37 +1,35 @@
-apiVersion : apps/v1
-kind : Deployment
-metadata :
-  name : deployment-superset
-  labels :
-    app : superset-application
-spec :
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-superset
+  labels:
+    app: superset-application
+spec:
   selector:
     matchLables:
-      project : superset
-  template :
-    metadata :
-      labels :
-        progect : superset # Service will look for those Pods labels
-    spec :
-      containers :
-        - name : superset
-          image : amancevice/superset
-          ports :
-            - containerPort : 80
+      project: superset
+  template:
+    metadata:
+      labels:
+        project: superset # Service will look for those Pods labels
+    spec:
+      containers:
+        - name: superset
+          image: amancevice/superset
+          ports:
+            - containerPort: 80
 
 ---
-apiVersion: V1
+apiVersion: v1
 kind: Service
 metadata:
   name: superset-pod-service
   labels:
     env: prod
     owner: Maxim Sava
-
 spec:
   selector:
-    project:
-      superset
+    project: superset
     ports:
       - name: app-listener
         protocol: TCP

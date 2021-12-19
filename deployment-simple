@@ -11,7 +11,7 @@ spec :
   template :
     metadata :
       labels :
-        progect : kgb
+        project : kgb
     spec :
       containers :
         - name : kgb-web

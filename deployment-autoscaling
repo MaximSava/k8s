@@ -1,26 +1,27 @@
-apiVersion : apps/v1
-kind : Deployment
-metadata :
-  name : my-web-deployment-autoscaling
-  labels :
-    app   : my-k8s-application
-    env   : prod
-    owner : Maxim
-spec :
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-autoscaling
+  labels:
+    app: my-k8s-application
+    env: prod
+    owner: Maxim
+spec:
   replicas: 2
   selector:
     matchLables:
-      project : mossad
-  template :
-    metadata :
-      labels :
-        progect : mossad
-    spec :
-      containers :
-        - name : mossad-web
-          image : adv4000/k8sphp:version2
-          ports :
-            - containerPort : 80
+      project: mossad
+  template:
+    metadata:
+      labels:
+        project: mossad
+    spec:
+      containers:
+        - name: mossad-web
+          image: adv4000/k8sphp:version2
+          ports:
+            - containerPort: 80
 
 ---
 apiVersion: autoscaling/v2

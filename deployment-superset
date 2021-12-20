@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-superset
+  name: deployment-superset.yaml
   labels:
     app: superset-application
 spec:

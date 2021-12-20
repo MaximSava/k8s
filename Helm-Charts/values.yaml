@@ -1,4 +1,4 @@
-# Default values for my Helm Chart
+# Default values.yaml for my Helm Chart.yaml
 
 container:
   image: amancevice/superset:latest

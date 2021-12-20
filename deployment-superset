@@ -31,9 +31,9 @@ metadata:
 spec:
   selector:
     project: superset
-    ports:
-      - name: app-listener
-        protocol: TCP
-        port: 80 # Port on Load Balancer
-        targetPort: 80 #Port on Pod
-    type: LoadBalancer
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 80 # Port on Load Balancer
+      targetPort: 80 #Port on Pod
+  type: LoadBalancer

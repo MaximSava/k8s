@@ -16,7 +16,7 @@ spec:
         project: superset # Service will look for those Pods labels
     spec:
       containers:
-        - name: {{ .Release.Name }}.superset
+        - name: {{ .Release.Name }}-superset
           image: {{ .Values.container.image }}
           ports:
             - containerPort: 80

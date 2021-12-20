@@ -1,0 +1,18 @@
+apiVersion : v2
+name       :  App-HelmChart
+description: My Helm Chart for Kubernetes
+type       : application
+version    : 0.1.0  # This is helm chart version
+appVersion : 1.2.3  # This is application version
+
+
+keywords:
+  - apache
+  - http
+  - https
+  - maximsava
+
+mantainers:
+  - name : Maxim Sava
+    email: blabla@gmail.com
+    url  : www.maxsava.com

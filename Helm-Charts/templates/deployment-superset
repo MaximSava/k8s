@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment-superset
+  labels:
+    app: superset-application
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLables:
+      project: superset
+  template:
+    metadata:
+      labels:
+        project: superset # Service will look for those Pods labels
+    spec:
+      containers:
+        - name: {{ .Release.Name }}.superset
+          image: {{ .Values.container.image }}
+          ports:
+            - containerPort: 80

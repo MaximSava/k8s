@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-superset-pod-service
+  labels:
+    env: prod
+    owner: Maxim Sava
+spec:
+  selector:
+    project: superset
+    ports:
+      - name: {{ .Release.Name }}-app-listener
+        protocol: TCP
+        port: 80 # Port on Load Balancer
+        targetPort: 80 #Port on Pod
+    type: LoadBalancer

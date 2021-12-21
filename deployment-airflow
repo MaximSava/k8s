@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-airflow
+  labels:
+    app: airflow-application
+spec:
+  selector:
+    matchLables:
+      project: airflow
+  template:
+    metadata:
+      labels:
+        project: airflow # Service will look for those Pods labels
+    spec:
+      containers:
+        - name: airflow
+          image: puckel/docker-airflow
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-pod-service
+  labels:
+    env: prod
+    owner: Maxim Sava
+spec:
+  selector:
+    project: airflow
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 80 # Port on Load Balancer
+      targetPort: 80 #Port on Pod
+  type: LoadBalancer

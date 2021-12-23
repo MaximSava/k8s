@@ -1,6 +1,6 @@
 # Default values.yaml for my Helm Chart.yaml
 
 container:
-  image: jenkins:alpine
+  image: jenkins/jenkins:alpine
 
 replicaCount: 1

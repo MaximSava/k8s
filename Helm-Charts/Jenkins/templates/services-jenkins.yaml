@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-jenkins-pod-service
+  labels:
+    env: prod
+    owner: Maxim-Sava
+spec:
+  selector:
+    project: jenkins
+  ports:
+    - name: {{ .Release.Name }}-app-listener
+      protocol: TCP
+      port: 80   # Port on Load Balancer
+      targetPort: 80 # Port on Pod
+  type: LoadBalancer

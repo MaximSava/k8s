@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment-jenkins.yaml
+  labels:
+    app: jenkins-application
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLables:
+      project: jenkins
+  template:
+    metadata:
+      labels:
+        project: jenkins # Service will look for those Pods labels
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-jenkins
+          image: {{ .Values.container.image }}
+          ports:
+            - containerPort: 80
